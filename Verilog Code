@@ -1,0 +1,42 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+
+// Design Name: 
+// Module Name: LFSR1
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module lfsr (out, clk, rst);
+
+  output reg [15:0] out;
+  input clk, rst;
+
+  wire feedback1;
+  wire feedback2;
+  wire feedback3;
+
+  assign feedback1 = (out[15] ^ out[14]);
+  assign feedback2 = (out[13]^feedback1);
+  assign feedback3 = (out[12] ^ feedback2);
+always @(posedge clk, posedge rst)
+  begin
+    if (rst)
+      out = 16'b0000000000010101;
+    else
+      out = {out[14:0],feedback3};
+  end
+endmodule
