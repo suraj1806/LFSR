@@ -1,0 +1,46 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+
+// Design Name: 
+// Module Name: LFSR1_tb
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+module lfsr_tb();
+reg clk;
+reg rst;
+wire [15:0] out;
+
+initial
+begin
+    clk = 0;
+    rst = 1;
+    #15;
+    
+    rst = 0;
+    #200;
+end
+
+always
+begin
+    #5;
+    clk = ~ clk;
+end
+
+lfsr DUT(out,clk,rst);
+endmodule
